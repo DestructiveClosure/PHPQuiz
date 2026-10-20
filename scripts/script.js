@@ -18,572 +18,694 @@ const timerText = document.getElementById("timer-text");
 const timerCircle = document.querySelector(".timer-circle");
 
 const quizQuestions = [
-  {
-    question: "Which of the following is a string data type in SQL?",
-    answers: [
-      { text: "VARCHAR", correct: true },
-      { text: "INT", correct: false },
-      { text: "DATE", correct: false },
-      { text: "BOOLEAN", correct: false }
-    ]
-  },
-  {
-    question: "What's the best data type for storing monetary values?",
-    answers: [
-      { text: "DECIMAL", correct: true },
-      { text: "INT", correct: false },
-      { text: "FLOAT", correct: false },
-      { text: "VARCHAR", correct: false }
-    ]
-  },
-  {
-    question: "Which data type stores only the date (no time)?",
-    answers: [
-      { text: "DATE", correct: true },
-      { text: "DATETIME", correct: false },
-      { text: "TIMESTAMP", correct: false },
-      { text: "TIME", correct: false }
-    ]
-  },
-  {
-    question: "Which operator is used to filter records in a SELECT statement?",
-    answers: [
-      { text: "WHERE", correct: true },
-      { text: "FILTER", correct: false },
-      { text: "IF", correct: false },
-      { text: "WHEN", correct: false }
-    ]
-  },
-  {
-    question: "What does this query do? `SELECT * FROM products WHERE price > 50;`",
-    answers: [
-      { text: "Selects products with price greater than 50", correct: true },
-      { text: "Selects products with price equal to 50", correct: false },
-      { text: "Selects products with price less than 50", correct: false },
-      { text: "Updates products with price 50", correct: false }
-    ]
-  },
-  {
-    question: "Which operator is used to select values within a range?",
-    answers: [
-      { text: "BETWEEN", correct: true },
-      { text: "IN", correct: false },
-      { text: "RANGE", correct: false },
-      { text: "FROM-TO", correct: false }
-    ]
-  },
-  {
-    question: "What does the `%` wildcard represent in a LIKE pattern?",
-    answers: [
-      { text: "Any number of characters (including zero)", correct: true },
-      { text: "Exactly one character", correct: false },
-      { text: "A percentage value", correct: false },
-      { text: "A special character", correct: false }
-    ]
-  },
-  {
-    question: "Which query finds all customers whose name starts with 'A'?",
-    answers: [
-      { text: "SELECT * FROM customers WHERE name LIKE 'A%';", correct: true },
-      { text: "SELECT * FROM customers WHERE name = 'A%';", correct: false },
-      { text: "SELECT * FROM customers WHERE name LIKE '%A';", correct: false },
-      { text: "SELECT * FROM customers WHERE name STARTS 'A';", correct: false }
-    ]
-  },
-  {
-    question: "What does this query do? `SELECT * FROM users WHERE email LIKE '%@gmail.com';`",
-    answers: [
-      { text: "Finds emails that end with @gmail.com", correct: true },
-      { text: "Finds emails that start with @gmail.com", correct: false },
-      { text: "Finds emails that contain @gmail.com anywhere", correct: false },
-      { text: "Finds emails equal to @gmail.com", correct: false }
-    ]
-  },
-  {
-    question: "Which keyword sorts data from highest to lowest?",
-    answers: [
-      { text: "DESC", correct: true },
-      { text: "ASC", correct: false },
-      { text: "HIGH", correct: false },
-      { text: "REVERSE", correct: false }
-    ]
-  },
-  {
-    question: "What does this query do? `SELECT * FROM products ORDER BY price DESC LIMIT 5;`",
-    answers: [
-      { text: "Selects the 5 most expensive products", correct: true },
-      { text: "Selects the 5 cheapest products", correct: false },
-      { text: "Selects 5 random products", correct: false },
-      { text: "Selects products under $5", correct: false }
-    ]
-  },
-  {
-    question: "Which clause is used to group rows that have the same values?",
-    answers: [
-      { text: "GROUP BY", correct: true },
-      { text: "COMBINE", correct: false },
-      { text: "MERGE", correct: false },
-      { text: "CLUSTER", correct: false }
-    ]
-  },
-  {
-    question: "What's the difference between WHERE and HAVING?",
-    answers: [
-      { text: "WHERE filters before grouping, HAVING filters after grouping", correct: true },
-      { text: "They are the same", correct: false },
-      { text: "WHERE is for numbers, HAVING is for text", correct: false },
-      { text: "HAVING is faster than WHERE", correct: false }
-    ]
-  },
-  {
-    question: "Which clause limits the number of results returned?",
-    answers: [
-      { text: "LIMIT", correct: true },
-      { text: "TOP", correct: false },
-      { text: "MAX", correct: false },
-      { text: "FIRST", correct: false }
-    ]
-  },
-  {
-    question: "What does `LIMIT 10` do?",
-    answers: [
-      { text: "Returns only the first 10 rows", correct: true },
-      { text: "Limits values to a maximum of 10", correct: false },
-      { text: "Returns only 10 columns", correct: false },
-      { text: "Limits query execution to 10 seconds", correct: false }
-    ]
-  },
-  {
-    question: "What's the difference between `DELETE FROM table_name;` and `DROP TABLE table_name;`?",
-    answers: [
-      { text: "DELETE removes rows but keeps the table, DROP removes the entire table", correct: true },
-      { text: "They do the same thing", correct: false },
-      { text: "DELETE is faster than DROP", correct: false },
-      { text: "DROP removes rows but keeps the table, DELETE removes the entire table", correct: false }
-    ]
-  },
-  {
-    question: "Which aggregate function calculates the average?",
-    answers: [
-      { text: "AVG()", correct: true },
-      { text: "MEAN()", correct: false },
-      { text: "AVERAGE()", correct: false },
-      { text: "CALC()", correct: false }
-    ]
-  },
-  {
-    question: "What does the COUNT() function return?",
-    answers: [
-      { text: "The number of rows", correct: true },
-      { text: "The sum of all values", correct: false },
-      { text: "The average of all values", correct: false },
-      { text: "The maximum value", correct: false }
-    ]
-  },
-  {
-    question: "Which function returns the smallest value?",
-    answers: [
-      { text: "MIN()", correct: true },
-      { text: "SMALL()", correct: false },
-      { text: "LEAST()", correct: false },
-      { text: "BOTTOM()", correct: false }
-    ]
-  },
-  {
-    question: "Which function returns the largest value?",
-    answers: [
-      { text: "MAX()", correct: true },
-      { text: "LARGE()", correct: false },
-      { text: "TOP()", correct: false },
-      { text: "BIGGEST()", correct: false }
-    ]
-  },
-  {
-    question: "How many required parameters does the mail() function have?",
-    answers: [
-      { text: "3", correct: true },
-      { text: "1", correct: false },
-      { text: "2", correct: false },
-      { text: "4", correct: false }
-    ]
-  },
-  {
-    question: "What is the correct order of parameters for mail()?",
-    answers: [
-      { text: "mail($to, $subject, $message);", correct: true },
-      { text: "mail($message, $to, $subject);", correct: false },
-      { text: "mail($subject, $to, $message);", correct: false },
-      { text: "mail($to, $message, $subject);", correct: false }
-    ]
-  },
-  {
-    question: "Which parameter of mail() is optional?",
-    answers: [
-      { text: "$headers", correct: true },
-      { text: "$to", correct: false },
-      { text: "$subject", correct: false },
-      { text: "$message", correct: false }
-    ]
-  },
+  // ---------- PHP Sessions ----------
   {
     question: "What is a PHP session?",
     answers: [
-      { text: "A way to store information across multiple pages", correct: true },
-      { text: "A single page load", correct: false },
-      { text: "A database connection", correct: false },
-      { text: "A user's browser", correct: false }
+      { text: "A way to store information across multiple pages on the server", correct: true },
+      { text: "A way to store all user data permanently in the browser", correct: false },
+      { text: "A PHP class used to connect to a database", correct: false },
+      { text: "A method for styling HTML pages", correct: false }
     ]
   },
   {
-    question: "Which function must be called before using sessions?",
+    question: "How does PHP commonly identify a user's session across page requests?",
     answers: [
-      { text: "session_start()", correct: true },
-      { text: "start_session()", correct: false },
-      { text: "session_begin()", correct: false },
-      { text: "init_session()", correct: false }
+      { text: "Using a session ID stored in a cookie such as PHPSESSID", correct: true },
+      { text: "Using the user's password in each request", correct: false },
+      { text: "Using the name of the PHP file", correct: false },
+      { text: "Using a database table name", correct: false }
+    ]
+  },
+
+  // ---------- PDO and Prepared Statements ----------
+  {
+    question: "What does PDO stand for?",
+    answers: [
+      { text: "PHP Data Objects", correct: true },
+      { text: "Personal Database Operations", correct: false },
+      { text: "Programmed Data Output", correct: false },
+      { text: "PHP Dynamic Objects", correct: false }
     ]
   },
   {
-    question: "Where must session_start() be placed in your PHP code?",
+    question: "What does PDO provide?",
     answers: [
-      { text: "Before any HTML output", correct: true },
-      { text: "Anywhere in the file", correct: false },
-      { text: "After the </html> tag", correct: false },
-      { text: "Only on the first page", correct: false }
+      { text: "A data-access abstraction layer for working with databases", correct: true },
+      { text: "A way to create CSS stylesheets", correct: false },
+      { text: "A system for automatically building HTML forms", correct: false },
+      { text: "A replacement for PHP classes", correct: false }
     ]
   },
   {
-    question: "What type of variable is $_SESSION?",
+    question: "What are the two possible kinds of results a PDO operation may return?",
     answers: [
-      { text: "Superglobal array", correct: true },
-      { text: "Local variable", correct: false },
-      { text: "Global variable", correct: false },
-      { text: "Constant", correct: false }
+      { text: "FALSE or a PDOStatement object", correct: true },
+      { text: "TRUE or a PHP array only", correct: false },
+      { text: "A string or an integer only", correct: false },
+      { text: "A session ID or a cookie", correct: false }
     ]
   },
   {
-    question: "How does PHP track which session belongs to which user?",
+    question: "What is a prepared statement?",
     answers: [
-      { text: "Session ID (typically in a cookie)", correct: true },
-      { text: "IP address only", correct: false },
-      { text: "Browser type", correct: false },
-      { text: "Username", correct: false }
+      { text: "An SQL statement with placeholders that can be bound to values", correct: true },
+      { text: "A database table created automatically by PHP", correct: false },
+      { text: "A PHP function that deletes old sessions", correct: false },
+      { text: "An SQL statement that can only retrieve data", correct: false }
     ]
   },
   {
-    question: "Which is the correct way to check if a session variable exists?",
+    question: "Why are prepared statements useful?",
     answers: [
-      { text: "if (isset($_SESSION['user']))", correct: true },
-      { text: "if ($_SESSION['user'])", correct: false },
-      { text: "if (exists($_SESSION['user']))", correct: false },
-      { text: "if (defined($_SESSION['user']))", correct: false }
+      { text: "They help protect against SQL injection by separating SQL code from values", correct: true },
+      { text: "They automatically create a database backup", correct: false },
+      { text: "They make every SQL query return an array", correct: false },
+      { text: "They prevent users from submitting HTML forms", correct: false }
     ]
   },
   {
-    question: "What does session_unset() do?",
+    question: "In the SQL fragment `WHERE id = :id`, what is `:id`?",
     answers: [
-      { text: "Removes all session variables", correct: true },
-      { text: "Destroys the session completely", correct: false },
-      { text: "Restarts the session", correct: false },
-      { text: "Nothing", correct: false }
+      { text: "A placeholder for a value that can be bound to the statement", correct: true },
+      { text: "A PHP variable that contains the whole database", correct: false },
+      { text: "A command that creates a new table", correct: false },
+      { text: "A comment ignored by PDO", correct: false }
+    ]
+  },
+
+  // ---------- Classes and Objects ----------
+  {
+    question: "What does the `new` operator do in PHP?",
+    answers: [
+      { text: "Creates an instance of a class", correct: true },
+      { text: "Defines a new database", correct: false },
+      { text: "Declares a static property", correct: false },
+      { text: "Starts a PHP session", correct: false }
     ]
   },
   {
-    question: "What's the difference between session_unset() and session_destroy()?",
+    question: "What does `$this` refer to inside an object method?",
     answers: [
-      { text: "session_unset() removes variables, session_destroy() removes the session file", correct: true },
-      { text: "They do the same thing", correct: false },
-      { text: "session_unset() is faster", correct: false },
-      { text: "session_destroy() only works on login pages", correct: false }
+      { text: "The current object", correct: true },
+      { text: "The parent class", correct: false },
+      { text: "The current PHP file", correct: false },
+      { text: "A static method", correct: false }
     ]
   },
   {
-    question: "What should you do after a header() redirect?",
+    question: "What is the correct way to access an instance property named `$name` inside a class method?",
     answers: [
-      { text: "Call exit() or die()", correct: true },
-      { text: "Nothing special", correct: false },
-      { text: "Call session_start()", correct: false },
-      { text: "Wait 5 seconds", correct: false }
+      { text: "$this->name", correct: true },
+      { text: "self::$name", correct: false },
+      { text: "parent->name", correct: false },
+      { text: "class->name", correct: false }
     ]
   },
   {
-    question: "Which is a common session variable used to track if a user is logged in?",
+    question: "What is a constructor commonly used for?",
     answers: [
-      { text: "$_SESSION['user_id']", correct: true },
-      { text: "$_SESSION['password']", correct: false },
-      { text: "$_SESSION['database']", correct: false },
-      { text: "$_SESSION['browser']", correct: false }
+      { text: "Initializing an object when it is created", correct: true },
+      { text: "Destroying an object before it is created", correct: false },
+      { text: "Making every property static", correct: false },
+      { text: "Registering a class autoloader", correct: false }
     ]
   },
   {
-    question: "What should you do to protect a page from unauthorized access?",
+    question: "What is the name of a PHP constructor method?",
     answers: [
-      { text: "Check if session variables exist and redirect if not", correct: true },
-      { text: "Use a password in the URL", correct: false },
-      { text: "Hide the page", correct: false },
-      { text: "Use JavaScript only", correct: false }
+      { text: "__construct()", correct: true },
+      { text: "__new()", correct: false },
+      { text: "constructor()", correct: false },
+      { text: "__start()", correct: false }
     ]
   },
   {
-    question: "Which function should you use to hash passwords in PHP?",
+    question: "What is a destructor commonly used for?",
     answers: [
-      { text: "password_hash()", correct: true },
-      { text: "md5()", correct: false },
-      { text: "sha1()", correct: false },
-      { text: "encrypt()", correct: false }
+      { text: "Cleaning up resources when an object is being destroyed", correct: true },
+      { text: "Initializing properties when an object is created", correct: false },
+      { text: "Loading every class in an application", correct: false },
+      { text: "Binding values to a prepared statement", correct: false }
     ]
   },
   {
-    question: "What does PASSWORD_DEFAULT refer to in password_hash()?",
+    question: "What is the name of a PHP destructor method?",
     answers: [
-      { text: "The currently recommended hashing algorithm", correct: true },
-      { text: "A weak encryption", correct: false },
-      { text: "No encryption", correct: false },
-      { text: "Base64 encoding", correct: false }
+      { text: "__destruct()", correct: true },
+      { text: "__delete()", correct: false },
+      { text: "destructor()", correct: false },
+      { text: "__remove()", correct: false }
     ]
   },
   {
-    question: "Which function verifies a password against its hash?",
+    question: "Which statement about a PHP destructor is correct?",
     answers: [
-      { text: "password_verify()", correct: true },
-      { text: "password_check()", correct: false },
-      { text: "verify_password()", correct: false },
-      { text: "check_hash()", correct: false }
+      { text: "It cannot accept parameters", correct: true },
+      { text: "It must return an integer", correct: false },
+      { text: "It must be static", correct: false },
+      { text: "It can only be declared in an abstract class", correct: false }
+    ]
+  },
+
+  // ---------- Static Members ----------
+  {
+    question: "What is a static property?",
+    answers: [
+      { text: "A property that belongs to the class rather than to an individual object", correct: true },
+      { text: "A property that can only be read inside a constructor", correct: false },
+      { text: "A property that is automatically stored in a session", correct: false },
+      { text: "A property that belongs only to a child class", correct: false }
     ]
   },
   {
-    question: "Why is md5() NOT recommended for passwords?",
+    question: "How do you access a static property named `$totalAccounts` on the `BankAccount` class?",
     answers: [
-      { text: "It's too fast and cryptographically broken", correct: true },
-      { text: "It's too slow", correct: false },
-      { text: "It only works on Windows", correct: false },
-      { text: "It requires special server configuration", correct: false }
+      { text: "BankAccount::$totalAccounts", correct: true },
+      { text: "BankAccount->totalAccounts", correct: false },
+      { text: "$this->totalAccounts", correct: false },
+      { text: "BankAccount::totalAccounts()", correct: false }
     ]
   },
   {
-    question: "What is SQL injection?",
+    question: "What is a static method?",
     answers: [
-      { text: "A security attack using malicious SQL code in input", correct: true },
-      { text: "A way to speed up queries", correct: false },
-      { text: "A method to backup databases", correct: false },
-      { text: "A type of database", correct: false }
+      { text: "A method that belongs to a class and can be called without creating an object", correct: true },
+      { text: "A method that can only run inside a constructor", correct: false },
+      { text: "A method that must return a static property", correct: false },
+      { text: "A method that can only be used by child classes", correct: false }
     ]
   },
   {
-    question: "Which function helps prevent SQL injection in MySQL?",
+    question: "Which operator is used to access static class members?",
     answers: [
-      { text: "mysqli_real_escape_string()", correct: true },
-      { text: "mysql_clean()", correct: false },
-      { text: "sanitize_input()", correct: false },
-      { text: "clean_sql()", correct: false }
+      { text: "::", correct: true },
+      { text: "->", correct: false },
+      { text: "=>", correct: false },
+      { text: ":::", correct: false }
+    ]
+  },
+
+  // ---------- Inheritance and Visibility ----------
+  {
+    question: "What does a child class inherit from its parent class?",
+    answers: [
+      { text: "Accessible properties and methods, with the ability to add its own", correct: true },
+      { text: "Only the parent's constructor name", correct: false },
+      { text: "Every private property as if it were public", correct: false },
+      { text: "Only the parent's static methods", correct: false }
     ]
   },
   {
-    question: "What's the best way to prevent SQL injection?",
+    question: "Which keyword declares that one class inherits from another?",
     answers: [
-      { text: "Use prepared statements with parameterized queries", correct: true },
-      { text: "Use CAPTCHA", correct: false },
-      { text: "Block all user input", correct: false },
-      { text: "Use only GET requests", correct: false }
+      { text: "extends", correct: true },
+      { text: "implements", correct: false },
+      { text: "inherits", correct: false },
+      { text: "parent", correct: false }
     ]
   },
   {
-    question: "Which is MORE secure?",
+    question: "Which example correctly declares `Kid` as a child of `Parent`?",
     answers: [
-      { text: "$query = \"SELECT * FROM users WHERE id = \" . mysqli_real_escape_string($conn, $_POST['id']);", correct: true },
-      { text: "$query = \"SELECT * FROM users WHERE id = \" . $_POST['id'];", correct: false }
+      { text: "class Kid extends Parent {}", correct: true },
+      { text: "class Kid inherits Parent {}", correct: false },
+      { text: "class Kid implements Parent {}", correct: false },
+      { text: "class Kid -> Parent {}", correct: false }
     ]
   },
   {
-    question: "What happens if you forget to call exit() after a header() redirect?",
+    question: "What does the `parent` keyword allow a child class to do?",
     answers: [
-      { text: "Code after the redirect might still execute", correct: true },
-      { text: "Nothing", correct: false },
-      { text: "The redirect won't work", correct: false },
-      { text: "The session is destroyed", correct: false }
+      { text: "Refer to accessible methods or members of its parent class", correct: true },
+      { text: "Create a new parent class at runtime", correct: false },
+      { text: "Access every private member of any class", correct: false },
+      { text: "Turn an instance method into a static method", correct: false }
     ]
   },
   {
-    question: "What does SQL stand for?",
+    question: "Which visibility allows access within the declaring class and its child classes?",
     answers: [
-      { text: "Structured Query Language", correct: true },
-      { text: "Simple Query Language", correct: false },
-      { text: "Standard Question Language", correct: false },
-      { text: "System Query Logic", correct: false }
+      { text: "protected", correct: true },
+      { text: "private", correct: false },
+      { text: "public", correct: false },
+      { text: "static", correct: false }
     ]
   },
   {
-    question: "What does RDBMS stand for?",
+    question: "Which visibility restricts access to the class that declares the member?",
     answers: [
-      { text: "Relational Database Management System", correct: true },
-      { text: "Remote Database Monitoring Service", correct: false },
-      { text: "Reliable Data Backup Management System", correct: false },
-      { text: "Rapid Database Migration Software", correct: false }
+      { text: "private", correct: true },
+      { text: "protected", correct: false },
+      { text: "public", correct: false },
+      { text: "abstract", correct: false }
     ]
   },
   {
-    question: "Which of the following is NOT a component of a typical LAMP stack?",
+    question: "Which visibility allows a member to be accessed from anywhere it is available?",
     answers: [
-      { text: "MongoDB", correct: true },
-      { text: "Linux", correct: false },
-      { text: "Apache", correct: false },
-      { text: "PHP", correct: false }
+      { text: "public", correct: true },
+      { text: "private", correct: false },
+      { text: "protected", correct: false },
+      { text: "static", correct: false }
     ]
   },
   {
-    question: "Which category of SQL statements is used to define database structure?",
+    question: "Which value is valid as a default PHP property value?",
     answers: [
-      { text: "DDL (Data Definition Language)", correct: true },
-      { text: "DML (Data Manipulation Language)", correct: false },
-      { text: "DCL (Data Control Language)", correct: false },
-      { text: "DTL (Data Transaction Language)", correct: false }
+      { text: "A literal value such as `0`, `'guest'`, or `[]`", correct: true },
+      { text: "The result of any function call", correct: false },
+      { text: "The result of any arithmetic expression", correct: false },
+      { text: "A value returned by a database query", correct: false }
+    ]
+  },
+
+  // ---------- Models and CRUD ----------
+  {
+    question: "What is a model commonly responsible for in an application using a database?",
+    answers: [
+      { text: "Representing data and containing database operations such as CRUD logic", correct: true },
+      { text: "Defining the visual styles of every page", correct: false },
+      { text: "Starting the browser session", correct: false },
+      { text: "Replacing all PHP classes", correct: false }
     ]
   },
   {
-    question: "Which of these is a DDL statement?",
+    question: "What does CRUD stand for?",
     answers: [
-      { text: "CREATE", correct: true },
-      { text: "SELECT", correct: false },
-      { text: "INSERT", correct: false },
-      { text: "UPDATE", correct: false }
+      { text: "Create, Retrieve, Update, Delete", correct: true },
+      { text: "Connect, Read, Undo, Deploy", correct: false },
+      { text: "Create, Run, Upload, Download", correct: false },
+      { text: "Configure, Return, Use, Debug", correct: false }
+    ]
+  },
+
+  // ---------- Methods and Parameters ----------
+  {
+    question: "What is a parameter?",
+    answers: [
+      { text: "A local variable listed in a function or method definition", correct: true },
+      { text: "A value that can only be stored in a database", correct: false },
+      { text: "A class that implements an interface", correct: false },
+      { text: "A value returned by every PHP function", correct: false }
     ]
   },
   {
-    question: "What symbol is used to terminate SQL statements?",
+    question: "What is an argument?",
     answers: [
-      { text: "Semicolon (;)", correct: true },
-      { text: "Period (.)", correct: false },
-      { text: "Comma (,)", correct: false },
-      { text: "Colon (:)", correct: false }
+      { text: "A value supplied to a function or method when it is called", correct: true },
+      { text: "A placeholder written only in a class declaration", correct: false },
+      { text: "A property that belongs to a class", correct: false },
+      { text: "An exception message", correct: false }
     ]
   },
   {
-    question: "Which is the correct syntax for a basic SELECT statement?",
+    question: "What is an accessor method commonly used for?",
     answers: [
-      { text: "SELECT * FROM table_name;", correct: true },
-      { text: "SELECT FROM table_name *;", correct: false },
-      { text: "FROM table_name SELECT *;", correct: false },
-      { text: "* SELECT FROM table_name;", correct: false }
+      { text: "Getting the value of an object's property", correct: true },
+      { text: "Deleting an object from memory", correct: false },
+      { text: "Creating a child class", correct: false },
+      { text: "Connecting to a database", correct: false }
     ]
   },
   {
-    question: "What does the AUTO_INCREMENT keyword do?",
+    question: "What word does an accessor method's name commonly begin with?",
     answers: [
-      { text: "Automatically generates a unique number for new records", correct: true },
-      { text: "Automatically updates all records", correct: false },
-      { text: "Speeds up query execution", correct: false },
-      { text: "Automatically creates indexes", correct: false }
+      { text: "get", correct: true },
+      { text: "set", correct: false },
+      { text: "make", correct: false },
+      { text: "put", correct: false }
     ]
   },
   {
-    question: "Which constraint ensures a column cannot contain NULL values?",
+    question: "What is a mutator method commonly used for?",
     answers: [
-      { text: "NOT NULL", correct: true },
-      { text: "UNIQUE", correct: false },
-      { text: "PRIMARY KEY", correct: false },
-      { text: "REQUIRED", correct: false }
+      { text: "Changing the value of an object's property", correct: true },
+      { text: "Reading a static property only", correct: false },
+      { text: "Loading a PHP class automatically", correct: false },
+      { text: "Catching an exception", correct: false }
     ]
   },
   {
-    question: "Which data type is best for storing a person's email address?",
+    question: "What word does a mutator method's name commonly begin with?",
     answers: [
-      { text: "VARCHAR", correct: true },
-      { text: "INT", correct: false },
-      { text: "DATE", correct: false },
-      { text: "BOOLEAN", correct: false }
+      { text: "set", correct: true },
+      { text: "get", correct: false },
+      { text: "catch", correct: false },
+      { text: "throw", correct: false }
     ]
   },
   {
-    question: "What data type would you use to store a price like $19.99?",
+    question: "What must a fluent setter return to support method chaining?",
     answers: [
-      { text: "DECIMAL", correct: true },
-      { text: "INT", correct: false },
-      { text: "VARCHAR", correct: false },
-      { text: "TEXT", correct: false }
+      { text: "A reference to the current object, commonly `$this`", correct: true },
+      { text: "The value `false`", correct: false },
+      { text: "A new database connection", correct: false },
+      { text: "A PDOStatement object", correct: false }
+    ]
+  },
+
+  // ---------- Abstract Classes and Interfaces ----------
+  {
+    question: "What is an abstract class?",
+    answers: [
+      { text: "A class intended to be extended rather than instantiated directly", correct: true },
+      { text: "A class that can only contain static properties", correct: false },
+      { text: "A class that cannot have child classes", correct: false },
+      { text: "A class that automatically connects to a database", correct: false }
     ]
   },
   {
-    question: "Which data type stores both date and time?",
+    question: "Can an abstract class be instantiated directly?",
     answers: [
-      { text: "DATETIME", correct: true },
-      { text: "DATE", correct: false },
-      { text: "TIME", correct: false },
-      { text: "YEAR", correct: false }
+      { text: "No, it must be extended by a concrete class", correct: true },
+      { text: "Yes, but only using the `parent` keyword", correct: false },
+      { text: "Yes, but only if it has a constructor", correct: false },
+      { text: "No, because abstract classes cannot contain methods", correct: false }
     ]
   },
   {
-    question: "What does DML stand for?",
+    question: "What is an abstract method?",
     answers: [
-      { text: "Data Manipulation Language", correct: true },
-      { text: "Data Management Logic", correct: false },
-      { text: "Database Modification Language", correct: false },
-      { text: "Data Migration Language", correct: false }
+      { text: "A method declaration that requires a concrete child class to provide an implementation", correct: true },
+      { text: "A method that can only be called using `$this`", correct: false },
+      { text: "A method that deletes an object", correct: false },
+      { text: "A method that automatically loads its class", correct: false }
     ]
   },
   {
-    question: "Which of these is a DML statement?",
+    question: "What does an interface define?",
     answers: [
-      { text: "INSERT", correct: true },
-      { text: "CREATE", correct: false },
-      { text: "ALTER", correct: false },
-      { text: "DROP", correct: false }
+      { text: "A contract specifying methods that implementing classes must provide", correct: true },
+      { text: "A database table and its records", correct: false },
+      { text: "A parent class's private properties", correct: false },
+      { text: "A list of values for a PHP session", correct: false }
     ]
   },
   {
-    question: "Which statement retrieves data from a database?",
+    question: "What visibility must methods declared in a PHP interface have?",
     answers: [
-      { text: "SELECT", correct: true },
-      { text: "GET", correct: false },
-      { text: "RETRIEVE", correct: false },
-      { text: "FETCH", correct: false }
+      { text: "public", correct: true },
+      { text: "private", correct: false },
+      { text: "protected", correct: false },
+      { text: "static only", correct: false }
     ]
   },
   {
-    question: "Which statement modifies existing data in a table?",
+    question: "Which statement best describes a difference between an abstract class and an interface?",
     answers: [
-      { text: "UPDATE", correct: true },
-      { text: "MODIFY", correct: false },
-      { text: "CHANGE", correct: false },
-      { text: "ALTER", correct: false }
+      { text: "An abstract class can provide shared implementation, while an interface defines a contract for required behavior", correct: true },
+      { text: "An interface can be instantiated, but an abstract class cannot", correct: false },
+      { text: "An abstract class can have methods, but an interface cannot", correct: false },
+      { text: "Interfaces are used only for database queries", correct: false }
+    ]
+  },
+
+  // ---------- Arrays, Functions, and Casting ----------
+  {
+    question: "What are PHP arrays commonly used for?",
+    answers: [
+      { text: "Storing collections of values", correct: true },
+      { text: "Declaring class visibility", correct: false },
+      { text: "Creating exceptions", correct: false },
+      { text: "Starting a session automatically", correct: false }
     ]
   },
   {
-    question: "What happens if you run `DELETE FROM customers;` without a WHERE clause?",
+    question: "What does PHP's `compact()` function create?",
     answers: [
-      { text: "It deletes all rows in the table", correct: true },
-      { text: "It does nothing", correct: false },
-      { text: "It deletes only the first row", correct: false },
-      { text: "It causes an error", correct: false }
+      { text: "An associative array using variable names as keys and their values as values", correct: true },
+      { text: "A compacted PHP class file", correct: false },
+      { text: "A prepared SQL statement", correct: false },
+      { text: "A new anonymous function", correct: false }
     ]
   },
   {
-    question: "Which SQL statement would you use to create a new table?",
+    question: "What is explicit type casting?",
     answers: [
-      { text: "CREATE TABLE", correct: true },
-      { text: "NEW TABLE", correct: false },
-      { text: "MAKE TABLE", correct: false },
-      { text: "ADD TABLE", correct: false }
+      { text: "Manually converting a value to a chosen type", correct: true },
+      { text: "Allowing PHP to choose a type without any conversion", correct: false },
+      { text: "Changing a class into an interface", correct: false },
+      { text: "Converting a parameter into an argument", correct: false }
     ]
   },
   {
-    question: "What is a primary key used for?",
+    question: "What is an anonymous function?",
     answers: [
-      { text: "To uniquely identify each record", correct: true },
-      { text: "To encrypt data", correct: false },
-      { text: "To sort data alphabetically", correct: false },
-      { text: "To speed up all queries", correct: false }
+      { text: "A function without a name", correct: true },
+      { text: "A function that cannot accept arguments", correct: false },
+      { text: "A function that must be declared inside an interface", correct: false },
+      { text: "A function that always returns an exception", correct: false }
     ]
   },
   {
-    question: "Which keyword makes column values unique across all rows?",
+    question: "How can an anonymous function be saved for later use?",
     answers: [
-      { text: "UNIQUE", correct: true },
-      { text: "DISTINCT", correct: false },
-      { text: "DIFFERENT", correct: false },
-      { text: "SPECIAL", correct: false }
+      { text: "Assign it to a variable", correct: true },
+      { text: "Declare it using the `extends` keyword", correct: false },
+      { text: "Store it in a PHP session only", correct: false },
+      { text: "Use it as a property default value", correct: false }
     ]
-  }
+  },
+
+  // ---------- Autoloading and Exceptions ----------
+  {
+    question: "What is class autoloading used for?",
+    answers: [
+      { text: "Loading a class file when the class is needed", correct: true },
+      { text: "Automatically creating every class in a project", correct: false },
+      { text: "Loading database records into an array", correct: false },
+      { text: "Starting all PHP sessions", correct: false }
+    ]
+  },
+  {
+    question: "Which function is commonly used to register a PHP autoloader?",
+    answers: [
+      { text: "spl_autoload_register()", correct: true },
+      { text: "class_load()", correct: false },
+      { text: "autoload_start()", correct: false },
+      { text: "require_all()", correct: false }
+    ]
+  },
+  {
+    question: "What does exception handling allow a program to do?",
+    answers: [
+      { text: "Signal unusual conditions and provide code to handle them", correct: true },
+      { text: "Prevent all possible programming errors", correct: false },
+      { text: "Convert every error into a database record", correct: false },
+      { text: "Skip the need for functions and methods", correct: false }
+    ]
+  },
+  {
+    question: "Which statement describes the `try`, `throw`, and `catch` sequence?",
+    answers: [
+      { text: "`try` runs code, `throw` signals an exception, and `catch` handles it", correct: true },
+      { text: "`try` creates a class, `throw` deletes it, and `catch` reloads it", correct: false },
+      { text: "`try` returns a value, `throw` stores it, and `catch` prints it automatically", correct: false },
+      { text: "`try` starts a session, `throw` binds a parameter, and `catch` closes PDO", correct: false }
+    ]
+  },
+  {
+    question: "What does an exception object's `getMessage()` method return?",
+    answers: [
+      { text: "The message associated with the exception", correct: true },
+      { text: "The name of the class that threw it only", correct: false },
+      { text: "The line of code as an integer", correct: false },
+      { text: "The value of the current session ID", correct: false }
+    ]
+  },
+  {
+    question: "What is `PDOException` used for?",
+    answers: [
+      { text: "Representing exceptions related to PDO errors", correct: true },
+      { text: "Creating a PDO database table", correct: false },
+      { text: "Starting a database transaction automatically", correct: false },
+      { text: "Registering a class autoloader", correct: false }
+    ]
+  },
+  {
+    question: "What is PDO's default error behavior as of PHP 8.0?",
+    answers: [
+      { text: "It throws an exception when an error occurs", correct: true },
+      { text: "It silently ignores every error", correct: false },
+      { text: "It always returns a PHP array", correct: false },
+      { text: "It terminates the server process without an exception", correct: false }
+    ]
+  },
+   {
+    question: "PDO has been available since PHP 5.6.",
+    answers: [
+      { text: "True", correct: false },
+      { text: "False", correct: true }
+    ]
+  },
+  {
+    question: "After every PDO operation, one of two results are returned.",
+    answers: [
+      { text: "True", correct: false },
+      { text: "False", correct: true }
+    ]
+  },
+  {
+    question: "To retrieve the value inserted into an auto-incremented field, use the lastInsertId() method.",
+    answers: [
+      { text: "True", correct: true },
+      { text: "False", correct: false }
+    ]
+  },
+  {
+    question: "To get the number of rows returned by a query, use the numRows() method.",
+    answers: [
+      { text: "True", correct: false },
+      { text: "False", correct: true }
+    ]
+  },
+  {
+    question: "PDO is designed to replace MySQLi.",
+    answers: [
+      { text: "True", correct: false },
+      { text: "False", correct: true }
+    ]
+  },
+  {
+    question: "PDO supports only one database: MySQL.",
+    answers: [
+      { text: "True", correct: false },
+      { text: "False", correct: true }
+    ]
+  },
+  {
+    question: "Which PDO method returns information about the error associated with the last database operation?",
+    answers: [
+      { text: "errorInfo()", correct: true },
+      { text: "lastError()", correct: false },
+      { text: "getError()", correct: false },
+      { text: "queryError()", correct: false }
+    ]
+  },
+  {
+    question: `In this code, if $result is FALSE, the query failed to execute:
+
+  $sql = "SELECT * FROM movies";
+  $result = $dbc->query($sql);`,
+      answers: [
+        { text: "True", correct: true },
+        { text: "False", correct: false }
+      ]
+    },
+    {
+      question: `Is this a proper way to replace variables in a query with named placeholders?
+
+  $sql = 'SELECT * FROM users WHERE email = :email AND status = :status';`,
+      answers: [
+        { text: "True", correct: true },
+        { text: "False", correct: false }
+      ]
+    },
+    {
+      question: "Using a prepared statement is the proper approach when a query includes variable data.",
+      answers: [
+        { text: "True", correct: true },
+        { text: "False", correct: false }
+      ]
+    },
+    {
+      question: "What is the proper way to close a PDO database connection named $dbc?",
+      answers: [
+        { text: "$dbc = null;", correct: true },
+        { text: "$dbc->close();", correct: false },
+        { text: "close($dbc);", correct: false },
+        { text: "$dbc->disconnect();", correct: false }
+      ]
+    },
+    {
+      question: "You should treat user input as potentially malicious and ________ the data.",
+      answers: [
+        { text: "validate", correct: true },
+        { text: "trust", correct: false },
+        { text: "execute", correct: false },
+        { text: "ignore", correct: false }
+      ]
+    },
+    {
+      question: "Which PDO method prepares a query containing placeholders and returns a PDOStatement object?",
+      answers: [
+        { text: "prepare()", correct: true },
+        { text: "query()", correct: false },
+        { text: "execute()", correct: false },
+        { text: "bindParam()", correct: false }
+      ]
+    },
+    {
+      question: "Constructors must be explicitly invoked.",
+      answers: [
+        { text: "True", correct: false },
+        { text: "False", correct: true }
+      ]
+    },
+    {
+      question: `What does this method return?
+      public function accountQuery() {
+        return $balance;
+      }`,
+        answers: [
+          { text: "The value of the $balance variable", correct: true },
+          { text: "The value of the object's balance property automatically", correct: false },
+          { text: "The name of the method", correct: false },
+          { text: "A new object", correct: false }
+        ]
+    },
+    {
+      question: "Static properties belong to an object.",
+      answers: [
+        { text: "True", correct: false },
+        { text: "False", correct: true }
+      ]
+    },
+    {
+      question: "Static properties require a dollar sign ($) before the property name when declared.",
+      answers: [
+        { text: "True", correct: true },
+        { text: "False", correct: false }
+      ]
+    },
+    {
+      question: "The self keyword refers to the current object.",
+      answers: [
+        { text: "True", correct: false },
+        { text: "False", correct: true }
+      ]
+    },
+    {
+      question: "Objects are like blueprints; they define classes.",
+      answers: [
+        { text: "True", correct: false },
+        { text: "False", correct: true }
+      ]
+    },
+    {
+      question: "Static methods belong to the class rather than to an instance of the class.",
+      answers: [
+        { text: "True", correct: true },
+        { text: "False", correct: false }
+      ]
+    },
+    {
+      question: "All property values of objects created from the same class are equal.",
+      answers: [
+        { text: "True", correct: false },
+        { text: "False", correct: true }
+      ]
+    },
+    {
+      question: "Objects are like blueprints.",
+      answers: [
+        { text: "True", correct: false },
+        { text: "False", correct: true }
+      ]
+    }
 ];
+
 
 // Randomize answer order for every question
 quizQuestions.forEach(q => shuffleArray(q.answers));

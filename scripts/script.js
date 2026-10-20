@@ -18,7 +18,6 @@ const timerText = document.getElementById("timer-text");
 const timerCircle = document.querySelector(".timer-circle");
 
 const quizQuestions = [
-  // ---------- PHP Sessions ----------
   {
     question: "What is a PHP session?",
     answers: [
@@ -37,8 +36,6 @@ const quizQuestions = [
       { text: "Using a database table name", correct: false }
     ]
   },
-
-  // ---------- PDO and Prepared Statements ----------
   {
     question: "What does PDO stand for?",
     answers: [
@@ -58,9 +55,9 @@ const quizQuestions = [
     ]
   },
   {
-    question: "What are the two possible kinds of results a PDO operation may return?",
+    question: "What does `PDO::query()` return?",
     answers: [
-      { text: "FALSE or a PDOStatement object", correct: true },
+      { text: "A PDOStatement object on success, or FALSE on failure", correct: true },
       { text: "TRUE or a PHP array only", correct: false },
       { text: "A string or an integer only", correct: false },
       { text: "A session ID or a cookie", correct: false }
@@ -93,8 +90,103 @@ const quizQuestions = [
       { text: "A comment ignored by PDO", correct: false }
     ]
   },
+  {
+    question: "PDO was first introduced in PHP 5.1.",
+    answers: [
+      { text: "True", correct: true },
+      { text: "False", correct: false }
+    ]
+  },
+  {
+    question: "To retrieve the value inserted into an auto-incremented field, use the lastInsertId() method.",
+    answers: [
+      { text: "True", correct: true },
+      { text: "False", correct: false }
+    ]
+  },
+  {
+    question: "To get the number of rows returned by a query, use the numRows() method.",
+    answers: [
+      { text: "True", correct: false },
+      { text: "False", correct: true }
+    ]
+  },
+  {
+    question: "PDO is designed to replace MySQLi.",
+    answers: [
+      { text: "True", correct: false },
+      { text: "False", correct: true }
+    ]
+  },
+  {
+    question: "PDO supports only one database: MySQL.",
+    answers: [
+      { text: "True", correct: false },
+      { text: "False", correct: true }
+    ]
+  },
+  {
+    question: "Which PDO method returns information about the error associated with the last database operation?",
+    answers: [
+      { text: "errorInfo()", correct: true },
+      { text: "lastError()", correct: false },
+      { text: "getError()", correct: false },
+      { text: "queryError()", correct: false }
+    ]
+  },
+  {
+    question: `Assuming PDO is in silent error mode, if $result is FALSE in this code, the query failed to execute:
 
-  // ---------- Classes and Objects ----------
+$sql = "SELECT * FROM movies";
+$result = $dbc->query($sql);`,
+    answers: [
+      { text: "True", correct: true },
+      { text: "False", correct: false }
+    ]
+  },
+  {
+    question: `Is this a proper way to replace variables in a query with named placeholders?
+
+$sql = 'SELECT * FROM users WHERE email = :email AND status = :status';`,
+    answers: [
+      { text: "True", correct: true },
+      { text: "False", correct: false }
+    ]
+  },
+  {
+    question: "Using a prepared statement is the proper approach when a query includes variable data.",
+    answers: [
+      { text: "True", correct: true },
+      { text: "False", correct: false }
+    ]
+  },
+  {
+    question: "What is the proper way to close a PDO database connection named $dbc?",
+    answers: [
+      { text: "$dbc = null;", correct: true },
+      { text: "$dbc->close();", correct: false },
+      { text: "close($dbc);", correct: false },
+      { text: "$dbc->disconnect();", correct: false }
+    ]
+  },
+  {
+    question: "You should treat user input as potentially malicious and ________ the data.",
+    answers: [
+      { text: "sanitize", correct: true },
+      { text: "trust", correct: false },
+      { text: "execute", correct: false },
+      { text: "ignore", correct: false }
+    ]
+  },
+  {
+    question: "Which PDO method prepares a query containing placeholders and returns a PDOStatement object?",
+    answers: [
+      { text: "prepare()", correct: true },
+      { text: "query()", correct: false },
+      { text: "execute()", correct: false },
+      { text: "bindParam()", correct: false }
+    ]
+  },
   {
     question: "What does the `new` operator do in PHP?",
     answers: [
@@ -141,6 +233,13 @@ const quizQuestions = [
     ]
   },
   {
+    question: "Constructors must be explicitly invoked.",
+    answers: [
+      { text: "True", correct: false },
+      { text: "False", correct: true }
+    ]
+  },
+  {
     question: "What is a destructor commonly used for?",
     answers: [
       { text: "Cleaning up resources when an object is being destroyed", correct: true },
@@ -167,8 +266,42 @@ const quizQuestions = [
       { text: "It can only be declared in an abstract class", correct: false }
     ]
   },
+  {
+    question: "Classes are like blueprints; objects are instances created from them.",
+    answers: [
+      { text: "True", correct: true },
+      { text: "False", correct: false }
+    ]
+  },
+  {
+    question: "All property values of objects created from the same class are equal.",
+    answers: [
+      { text: "True", correct: false },
+      { text: "False", correct: true }
+    ]
+  },
+  {
+    question: `What does this method return?
 
-  // ---------- Static Members ----------
+public function accountQuery() {
+  return $balance;
+}`,
+    answers: [
+      { text: "The value of the $balance variable", correct: true },
+      { text: "The value of the object's balance property automatically", correct: false },
+      { text: "The name of the method", correct: false },
+      { text: "A new object", correct: false }
+    ]
+  },
+  {
+    question: "Which value is valid as a default PHP property value?",
+    answers: [
+      { text: "A literal value such as `0`, `'guest'`, or `[]`", correct: true },
+      { text: "The result of a function call such as `strtoupper('a')`", correct: false },
+      { text: "A value returned by a database query", correct: false },
+      { text: "The value of another object's property", correct: false }
+    ]
+  },
   {
     question: "What is a static property?",
     answers: [
@@ -205,8 +338,34 @@ const quizQuestions = [
       { text: ":::", correct: false }
     ]
   },
-
-  // ---------- Inheritance and Visibility ----------
+  {
+    question: "Static properties belong to an object.",
+    answers: [
+      { text: "True", correct: false },
+      { text: "False", correct: true }
+    ]
+  },
+  {
+    question: "Static properties require a dollar sign ($) before the property name when declared.",
+    answers: [
+      { text: "True", correct: true },
+      { text: "False", correct: false }
+    ]
+  },
+  {
+    question: "The self keyword refers to the current object.",
+    answers: [
+      { text: "True", correct: false },
+      { text: "False", correct: true }
+    ]
+  },
+  {
+    question: "Static methods belong to the class rather than to an instance of the class.",
+    answers: [
+      { text: "True", correct: true },
+      { text: "False", correct: false }
+    ]
+  },
   {
     question: "What does a child class inherit from its parent class?",
     answers: [
@@ -226,12 +385,12 @@ const quizQuestions = [
     ]
   },
   {
-    question: "Which example correctly declares `Kid` as a child of `Parent`?",
+    question: "Which example correctly declares `Kid` as a child of `Person`?",
     answers: [
-      { text: "class Kid extends Parent {}", correct: true },
-      { text: "class Kid inherits Parent {}", correct: false },
-      { text: "class Kid implements Parent {}", correct: false },
-      { text: "class Kid -> Parent {}", correct: false }
+      { text: "class Kid extends Person {}", correct: true },
+      { text: "class Kid inherits Person {}", correct: false },
+      { text: "class Kid implements Person {}", correct: false },
+      { text: "class Kid -> Person {}", correct: false }
     ]
   },
   {
@@ -271,17 +430,6 @@ const quizQuestions = [
     ]
   },
   {
-    question: "Which value is valid as a default PHP property value?",
-    answers: [
-      { text: "A literal value such as `0`, `'guest'`, or `[]`", correct: true },
-      { text: "The result of any function call", correct: false },
-      { text: "The result of any arithmetic expression", correct: false },
-      { text: "A value returned by a database query", correct: false }
-    ]
-  },
-
-  // ---------- Models and CRUD ----------
-  {
     question: "What is a model commonly responsible for in an application using a database?",
     answers: [
       { text: "Representing data and containing database operations such as CRUD logic", correct: true },
@@ -293,14 +441,12 @@ const quizQuestions = [
   {
     question: "What does CRUD stand for?",
     answers: [
-      { text: "Create, Retrieve, Update, Delete", correct: true },
+      { text: "Create, Read, Update, Delete", correct: true },
       { text: "Connect, Read, Undo, Deploy", correct: false },
       { text: "Create, Run, Upload, Download", correct: false },
       { text: "Configure, Return, Use, Debug", correct: false }
     ]
   },
-
-  // ---------- Methods and Parameters ----------
   {
     question: "What is a parameter?",
     answers: [
@@ -364,8 +510,6 @@ const quizQuestions = [
       { text: "A PDOStatement object", correct: false }
     ]
   },
-
-  // ---------- Abstract Classes and Interfaces ----------
   {
     question: "What is an abstract class?",
     answers: [
@@ -420,8 +564,6 @@ const quizQuestions = [
       { text: "Interfaces are used only for database queries", correct: false }
     ]
   },
-
-  // ---------- Arrays, Functions, and Casting ----------
   {
     question: "What are PHP arrays commonly used for?",
     answers: [
@@ -467,8 +609,6 @@ const quizQuestions = [
       { text: "Use it as a property default value", correct: false }
     ]
   },
-
-  // ---------- Autoloading and Exceptions ----------
   {
     question: "What is class autoloading used for?",
     answers: [
@@ -531,179 +671,7 @@ const quizQuestions = [
       { text: "It always returns a PHP array", correct: false },
       { text: "It terminates the server process without an exception", correct: false }
     ]
-  },
-   {
-    question: "PDO has been available since PHP 5.6.",
-    answers: [
-      { text: "True", correct: false },
-      { text: "False", correct: true }
-    ]
-  },
-  {
-    question: "After every PDO operation, one of two results are returned.",
-    answers: [
-      { text: "True", correct: false },
-      { text: "False", correct: true }
-    ]
-  },
-  {
-    question: "To retrieve the value inserted into an auto-incremented field, use the lastInsertId() method.",
-    answers: [
-      { text: "True", correct: true },
-      { text: "False", correct: false }
-    ]
-  },
-  {
-    question: "To get the number of rows returned by a query, use the numRows() method.",
-    answers: [
-      { text: "True", correct: false },
-      { text: "False", correct: true }
-    ]
-  },
-  {
-    question: "PDO is designed to replace MySQLi.",
-    answers: [
-      { text: "True", correct: false },
-      { text: "False", correct: true }
-    ]
-  },
-  {
-    question: "PDO supports only one database: MySQL.",
-    answers: [
-      { text: "True", correct: false },
-      { text: "False", correct: true }
-    ]
-  },
-  {
-    question: "Which PDO method returns information about the error associated with the last database operation?",
-    answers: [
-      { text: "errorInfo()", correct: true },
-      { text: "lastError()", correct: false },
-      { text: "getError()", correct: false },
-      { text: "queryError()", correct: false }
-    ]
-  },
-  {
-    question: `In this code, if $result is FALSE, the query failed to execute:
-
-  $sql = "SELECT * FROM movies";
-  $result = $dbc->query($sql);`,
-      answers: [
-        { text: "True", correct: true },
-        { text: "False", correct: false }
-      ]
-    },
-    {
-      question: `Is this a proper way to replace variables in a query with named placeholders?
-
-  $sql = 'SELECT * FROM users WHERE email = :email AND status = :status';`,
-      answers: [
-        { text: "True", correct: true },
-        { text: "False", correct: false }
-      ]
-    },
-    {
-      question: "Using a prepared statement is the proper approach when a query includes variable data.",
-      answers: [
-        { text: "True", correct: true },
-        { text: "False", correct: false }
-      ]
-    },
-    {
-      question: "What is the proper way to close a PDO database connection named $dbc?",
-      answers: [
-        { text: "$dbc = null;", correct: true },
-        { text: "$dbc->close();", correct: false },
-        { text: "close($dbc);", correct: false },
-        { text: "$dbc->disconnect();", correct: false }
-      ]
-    },
-    {
-      question: "You should treat user input as potentially malicious and ________ the data.",
-      answers: [
-        { text: "validate", correct: true },
-        { text: "trust", correct: false },
-        { text: "execute", correct: false },
-        { text: "ignore", correct: false }
-      ]
-    },
-    {
-      question: "Which PDO method prepares a query containing placeholders and returns a PDOStatement object?",
-      answers: [
-        { text: "prepare()", correct: true },
-        { text: "query()", correct: false },
-        { text: "execute()", correct: false },
-        { text: "bindParam()", correct: false }
-      ]
-    },
-    {
-      question: "Constructors must be explicitly invoked.",
-      answers: [
-        { text: "True", correct: false },
-        { text: "False", correct: true }
-      ]
-    },
-    {
-      question: `What does this method return?
-      public function accountQuery() {
-        return $balance;
-      }`,
-        answers: [
-          { text: "The value of the $balance variable", correct: true },
-          { text: "The value of the object's balance property automatically", correct: false },
-          { text: "The name of the method", correct: false },
-          { text: "A new object", correct: false }
-        ]
-    },
-    {
-      question: "Static properties belong to an object.",
-      answers: [
-        { text: "True", correct: false },
-        { text: "False", correct: true }
-      ]
-    },
-    {
-      question: "Static properties require a dollar sign ($) before the property name when declared.",
-      answers: [
-        { text: "True", correct: true },
-        { text: "False", correct: false }
-      ]
-    },
-    {
-      question: "The self keyword refers to the current object.",
-      answers: [
-        { text: "True", correct: false },
-        { text: "False", correct: true }
-      ]
-    },
-    {
-      question: "Objects are like blueprints; they define classes.",
-      answers: [
-        { text: "True", correct: false },
-        { text: "False", correct: true }
-      ]
-    },
-    {
-      question: "Static methods belong to the class rather than to an instance of the class.",
-      answers: [
-        { text: "True", correct: true },
-        { text: "False", correct: false }
-      ]
-    },
-    {
-      question: "All property values of objects created from the same class are equal.",
-      answers: [
-        { text: "True", correct: false },
-        { text: "False", correct: true }
-      ]
-    },
-    {
-      question: "Objects are like blueprints.",
-      answers: [
-        { text: "True", correct: false },
-        { text: "False", correct: true }
-      ]
-    }
+  }
 ];
 
 
